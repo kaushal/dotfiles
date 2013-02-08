@@ -1,0 +1,17 @@
+[user]
+	name = Vaibhav Verma
+	email = vaibhav2614@gmail.com
+[color]
+    ui = true
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
+	co = checkout
+[core]
+	filemode = false
+    excludesfile = ~/.gitignore_global
+[log]
+    date = local
