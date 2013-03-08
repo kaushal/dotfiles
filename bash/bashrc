@@ -259,10 +259,12 @@ use_env() {
 #some machines dont keep my sudo.
 alias sudo="sudo -E"
 
-alias mediator="ssh -D 4567 krp103@kill.rutgers.edu"
+alias kill="ssh -D 4567 krp103@kill.rutgers.edu"
 alias builder="ssh -D 4567 krp103@builder.rutgers.edu"
 alias website="ssh kaushalp88@kparikh.com"
 
+alias sockson="networksetup -setsocksfirewallproxystate Wi-Fi on"
+alias socksoff="networksetup -setsocksfirewallproxystate Wi-Fi off"
 # A nice alias for JSON viewing
 alias json="python -mjson.tool"
 

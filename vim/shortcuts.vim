@@ -19,6 +19,10 @@ set backspace=indent,eol,start
 map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
+" This is totally awesome - remap jj to escape in insert mode.  You'll never  type jj anyway, so it's great!
+inoremap jj <Esc>
+nnoremap JJJJ <Nop>
+
 nnoremap di\| T\|d,
 nnoremap da\| F\|d,
 nnoremap ci\| T\|c,
