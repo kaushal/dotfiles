@@ -25,3 +25,12 @@ source $HOME/.vim/shortcuts.vim
 source $HOME/.vim/syntax_highlighting.vim
 source $HOME/.vim/visual.vim
 source $HOME/.vim/tmux.vim
+
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set smartcase
+set autoindent
+
+
