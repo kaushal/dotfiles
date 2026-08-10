@@ -1,0 +1,9 @@
+# Copy to ~/.zshrc.local — machine-local, never committed.
+# Anything secret or machine-specific belongs here.
+#
+# export AWS_PROFILE=...
+# export OPENAI_API_KEY=...
+# export PATH="/opt/some-work-tool/bin:$PATH"
+#
+# Prefer short-lived credentials (aws sso login / aws-vault) over pasting
+# long-lived keys into any file.

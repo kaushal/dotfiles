@@ -1,0 +1,28 @@
+# ~/.config/herdr/config.toml — versioned in dotfiles (herdr/config.toml).
+# Herdr: terminal workspace manager for AI coding agents.
+# Reference: https://herdr.dev/docs/config-reference/
+# Validate:  herdr config check      Apply live:  herdr server reload-config
+
+[theme]
+name = "catppuccin"           # auto_switch / dark_name / light_name also available — see docs
+
+[keys]
+prefix = "ctrl+b"             # bindings look like "prefix+c", "prefix+shift+g"
+
+[session]
+resume_agents_on_restore = true   # bring Claude/Codex/etc. sessions back on restore
+
+[ui]
+copy_on_select = true         # select text → copy (tmux-ish)
+# tab_bar_position = "bottom"       # "top" (default) | "bottom"
+# pane_scrollbars = false           # hide per-pane scrollbars
+
+# [terminal]
+#   default_shell = "zsh"
+# [worktrees]
+#   directory = "~/worktrees"
+# [remote]
+#   manage_ssh_config = true        # for `herdr --remote <host>`
+
+[update]
+channel = "stable"

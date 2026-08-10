@@ -1,0 +1,14 @@
+# macOS packages: brew bundle --file=packages/Brewfile
+brew "git"
+brew "gh"          # GitHub CLI
+brew "ripgrep"     # rg — fast grep
+brew "fd"          # friendlier find
+brew "fzf"         # fuzzy finder (ctrl-r, ctrl-t)
+brew "bat"         # cat with syntax highlighting
+brew "eza"         # modern ls
+brew "zoxide"      # smarter cd (z)
+brew "jq"          # JSON on the command line
+brew "starship"    # prompt
+brew "htop"
+brew "tree"
+brew "wget"

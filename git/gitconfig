@@ -1,0 +1,44 @@
+[user]
+	name = Kaushal Parikh
+	email = kaushalp88@gmail.com
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[core]
+	excludesfile = ~/.gitignore_global
+	filemode = false
+[pull]
+	rebase = true
+[push]
+	default = current
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[merge]
+	conflictstyle = zdiff3
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
+	colorMoved = default
+[log]
+	date = local
+[credential]
+	helper = cache --timeout=3600
+[alias]
+	co = checkout
+	sw = switch
+	st = status -sb
+	br = branch
+	ci = commit
+	amend = commit --amend --no-edit
+	l = log --oneline --graph --decorate -20
+	ll = log --oneline --graph --decorate --all -30
+	last = log -1 --stat
+	d = diff
+	ds = diff --staged
+	unstage = restore --staged
+	undo = reset --soft HEAD~1
+	wt = worktree
+	pushf = push --force-with-lease

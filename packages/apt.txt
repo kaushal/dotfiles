@@ -1,0 +1,13 @@
+# Ubuntu packages, one per line (comments ignored). Installed by bootstrap.sh.
+git
+ripgrep
+fd-find
+fzf
+bat
+jq
+htop
+tree
+wget
+curl
+build-essential
+zsh

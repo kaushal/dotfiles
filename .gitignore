@@ -1,0 +1,5 @@
+# Machine-local overrides — never commit these.
+*.local
+.zshrc.local
+zsh/zshrc.local
+.DS_Store
