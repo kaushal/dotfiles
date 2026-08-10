@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# Pull snaxbox's encrypted snapshots down to this Mac and push them offsite.
+#
+#   snaxbox-backup-sync           # fetch new archives, commit, push
+#   snaxbox-backup-sync --verify  # also decrypt the newest one and list it
+#
+# snaxbox writes the archives nightly (snaxpad-backup.timer). This is the "get
+# them off the box" half: a copy here, and a copy in the private GitHub repo.
+# The age private key stays on this machine — the box never has it.
+set -euo pipefail
+
+HOST="${SNAXBOX_HOST:-kaushal@192.168.1.228}"
+LOCAL="$HOME/Backups/snaxbox"
+KEY="$HOME/.config/age/snaxbox-backup.key"
+
+mkdir -p "$LOCAL"; chmod 700 "$LOCAL"
+cd "$LOCAL"
+
+echo "→ fetching from ${HOST}"
+names=$(ssh "$HOST" 'sudo ls -1 /var/backups/snaxpad/ 2>/dev/null || true')
+[ -n "$names" ] || { echo "no archives on the box — is snaxpad-backup.timer running?" >&2; exit 1; }
+
+new=0
+while IFS= read -r name; do
+  [ -n "$name" ] || continue
+  if [ ! -f "$name" ]; then
+    ssh "$HOST" "sudo cat /var/backups/snaxpad/$name" > "$name"
+    chmod 600 "$name"
+    echo "   + $name"
+    new=$((new + 1))
+  fi
+done <<< "$names"
+[ "$new" -eq 0 ] && echo "   (already current)"
+
+if [ "${1:-}" = "--verify" ]; then
+  latest=$(ls -t ./*.age | head -1)
+  echo "→ verifying $latest"
+  tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
+  age -d -i "$KEY" "$latest" | tar -xz -C "$tmp"
+  find "$tmp" -type f | sed "s|$tmp/||" | sort | sed 's/^/   /'
+  echo "   ✓ decrypts and unpacks"
+fi
+
+if git rev-parse --git-dir >/dev/null 2>&1; then
+  git add -A
+  if ! git diff --cached --quiet; then
+    git commit -qm "Encrypted snaxbox snapshot $(date +%F)"
+    git push -q origin main && echo "→ pushed offsite"
+  else
+    echo "→ offsite already current"
+  fi
+fi
