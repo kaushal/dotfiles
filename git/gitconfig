@@ -57,3 +57,8 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+
+# Work lives under ~/work and commits with the work address. The identity file
+# itself is machine-local (this repo is public) — see README.
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig-work
