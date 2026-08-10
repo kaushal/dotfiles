@@ -60,5 +60,6 @@
 
 # Work lives under ~/work and commits with the work address. The identity file
 # itself is machine-local (this repo is public) — see README.
-[includeIf "gitdir:~/work/"]
+# gitdir/i is the case-insensitive form: the Mac has ~/Work, Linux has ~/work.
+[includeIf "gitdir/i:~/work/"]
 	path = ~/.gitconfig-work
