@@ -42,3 +42,18 @@
 	undo = reset --soft HEAD~1
 	wt = worktree
 	pushf = push --force-with-lease
+
+# GitHub auth over HTTPS. `!gh ...` resolves from PATH so this works on macOS
+# and Linux alike (`gh auth setup-git` would hardcode a machine-specific path).
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
