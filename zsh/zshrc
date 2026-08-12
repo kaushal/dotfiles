@@ -101,6 +101,13 @@ if ! command -v starship >/dev/null; then
   PROMPT='%F{blue}%~%f${vcs_info_msg_0_} %# '
 fi
 
+# ------------------------------------------------------------------ greeting
+# Show the day at a glance when opening a new terminal — a login shell only, so
+# subshells don't repeat it. Set DEVDAY_QUIET=1 in ~/.zshrc.local to silence it.
+if [[ -o interactive && -o login && -z "$DEVDAY_QUIET" ]] && command -v devday >/dev/null; then
+  devday
+fi
+
 # ------------------------------------------------------------------ local only
 # Secrets, work paths, per-machine tweaks. Not in git. See zshrc.local.example.
 [ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
